@@ -8,7 +8,7 @@
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["H:\\LargeDocuments\\2011-08-18_18-08-06\\NetBeansProjects\\JavaApplication1\\src\\templates\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["E:\\DemoAll\\src\\java\\templates\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT

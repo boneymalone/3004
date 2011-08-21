@@ -37,8 +37,7 @@ public class ReportService {
     private String value;
     private String userName = "";
     
-    private static final String projectPath = "C://Documents and Settings" +
-            "/s4217258/My Documents/Dropbox/uni/csse3004/private/Indiv/indiv/";
+    private static final String projectPath = "E:/DemoAll/";
     private String reportPath = "src/java/templates/";
     private String reportDes = "web/reports/";
 
@@ -363,7 +362,7 @@ public class ReportService {
         ArrayList<String> ttemp = new ReportService("session").getPollIDs(2);
         System.out.print(ttemp);
         System.out.print("\n");
-        ArrayList<String> temp = new ReportService("session").getDemographicQuestions(1);
+        ArrayList<String> temp = new ReportService("session").getDemographicQuestions(10);
         System.out.print(temp);
         System.out.print("\n");
         ArrayList<String> temp1 = new ReportService("session").getDemographicAnswers(18);

@@ -8,11 +8,15 @@
         if(userID!=null){
             ReportService rs = new ReportService("");
             ArrayList<String> result = rs.getPollIDs(Integer.parseInt(userID));
-            out.println("[");
-            for(int i=0; i< result.size();i++){
+            out.println(result);
+            /*for(int i=0; i< result.size();i++){
                 out.println(result.get(i));
+                if(i!=result.size()-1){
+                    out.println(", ");
+                }
             }
             out.println("]");
+            */
         }
     }
     //Questions
@@ -22,11 +26,16 @@
             
             ReportService rs = new ReportService("");
             ArrayList<String> result = rs.getDemographicQuestions(Integer.parseInt(pollID));
-            out.println("[");
-            for(int i=0; i< result.size();i++){
-                out.println(result.get(i).toString());
+            if(result.size()>0){
+                out.println("[");
+                for(int i=0; i< result.size();i++){
+                    out.println(result.get(i).toString());
+                    if(i!=result.size()-1){
+                    out.println(", ");
+                }
+                }
+                out.println("]");
             }
-            out.println("]");
         }
     }
     
@@ -37,11 +46,16 @@
 
             ReportService rs = new ReportService("");
             ArrayList<String> result = rs.getDemographicAnswers(Integer.parseInt(questID));
-            out.println("[");
-            for(int i=0; i< result.size();i++){
-                out.println(result.get(i).toString());
+            if(result.size()>0){
+                out.println("[");
+                for(int i=0; i< result.size();i++){
+                    out.println(result.get(i).toString());
+                    if(i!=result.size()-1){
+                    out.println(", ");
+                }
+                }
+                out.println("]");
             }
-            out.println("]");
         }
     }
     //Individual
@@ -51,11 +65,16 @@
             String pollID = request.getParameter("pollID");
             ReportService rs = new ReportService("");
             ArrayList<String> result = rs.getUsers(Integer.parseInt(pollID));
-            out.println("[");
-            for(int i=0; i< result.size();i++){
-                out.println(result.get(i).toString());
+            if(result.size()>0){
+                out.println("[");
+                for(int i=0; i< result.size();i++){
+                    out.println(result.get(i).toString());
+                    if(i!=result.size()-1){
+                    out.println(", ");
+                }
+                }
+                out.println("]");
             }
-            out.println("]");
         }
     }
     String Status="";
@@ -63,18 +82,18 @@
     if(type.equals("system")){
         
         Status = new ReportService(type).generateReport();
-        while(Status==""){
-            out.println("exporting.");
-        }
-        response.sendRedirect("/indiv/reports/System Utilisation.pdf");
+        //while(Status==""){
+          //  out.println("exporting.");
+        //}
+        response.sendRedirect("/DemoAll/reports/System Utilisation.pdf");
     }
     
     else if(type.equals("session")){
          Status = new ReportService(type).generateReport();
-         while(Status==""){
-            out.println("exporting.");
-         }
-         response.sendRedirect("/indiv/reports/Session History Report.pdf");
+         //while(Status==""){
+          //  out.println("exporting.");
+         //}
+         response.sendRedirect("/DemoAll/reports/Session History Report.pdf");
        }
     else if (type.equals("statistical")){
         String graph = request.getParameter("graph");
@@ -86,21 +105,23 @@
             response.sendRedirect(""); //send to google
         
         }
-        int demoID = Integer.parseInt(request.getParameter("demoID"));
+        String demoID = "";
+        demoID = request.getParameter("demoID");
         int pollID = Integer.parseInt(request.getParameter("pollID"));
         String demo_value = request.getParameter("demoValue");
-        if(demoID!=-1){
-            Status = new ReportService(new BigDecimal(pollID), type, graph, new BigDecimal(demoID), demo_value).generateReport();
+        if(!demoID.equals("")){
+            int demo = Integer.parseInt(demoID);
+            Status = new ReportService(new BigDecimal(pollID), type, graph, new BigDecimal(demo), demo_value).generateReport();
         }
         else{
         
 
 
         }
-        while(Status==""){
-            out.println("exporting.");
-        }
-        response.sendRedirect("/indiv/reports/Statistical Report.pdf");
+        //while(Status==""){
+          //  out.println("exporting.");
+        //}
+        response.sendRedirect("/DemoAll/reports/Statistical Report.pdf");
     }
     
 %>
